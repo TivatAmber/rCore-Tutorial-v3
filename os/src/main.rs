@@ -50,15 +50,15 @@ pub fn rust_main() -> ! {
         fn boot_stack_top(); // stack top
     }
     clear_bss();
-    println!("Hello, world!");
-    println!(".text [{:#x}, {:#x})", stext as usize, etext as usize);
-    println!(".rodata [{:#x}, {:#x})", srodata as usize, erodata as usize);
-    println!(".data [{:#x}, {:#x})", sdata as usize, edata as usize);
-    println!(
+    debug!("Hello, world!");
+    info!(".text [{:#x}, {:#x})", stext as usize, etext as usize);
+    info!(".rodata [{:#x}, {:#x})", srodata as usize, erodata as usize);
+    info!(".data [{:#x}, {:#x})", sdata as usize, edata as usize);
+    info!(
         "boot_stack top=bottom={:#x}, lower_bound={:#x}",
         boot_stack_top as usize, boot_stack_lower_bound as usize
     );
-    println!(".bss [{:#x}, {:#x})", sbss as usize, ebss as usize);
+    info!(".bss [{:#x}, {:#x})", sbss as usize, ebss as usize);
 
     use crate::board::QEMUExit;
     crate::board::QEMU_EXIT_HANDLE.exit_success(); // CI autotest success
